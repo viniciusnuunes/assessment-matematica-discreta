@@ -1,31 +1,31 @@
 class ItemEntrega:
     def __init__(self):
-        self.Itens = []
+        self.itens = []
         self.idVolume = ''
         self.nomeVolume = ''
 
     def inserir(self, id, item):
-        self.Itens.insert(0, (id, item))
+        self.itens.insert(0, (id, item))
 
     def remover(self, id):
         tamanho = self.tamanho()
 
-        for idx, item in enumerate(self.Itens):
+        for idx, item in enumerate(self.itens):
             if id == item[0]:
-                self.Itens.pop(idx)
+                self.itens.pop(idx)
                 print(f'Volume {id} removido com sucesso')
 
         if tamanho == self.tamanho():
             print('Item não localizado')
 
     def mostrarItens(self):
-        return self.Itens
+        return self.itens
 
     def topo(self):
-        return self.Itens[len(self.Itens) - 1]
+        return self.itens[len(self.itens) - 1]
 
     def tamanho(self):
-        return len(self.Itens)
+        return len(self.itens)
 
     def vazio(self):
-        return self.Itens == []
+        return self.itens == []
