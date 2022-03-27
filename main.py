@@ -1,5 +1,7 @@
-import volume
+import itemEntrega
 
+sair = False
+itemEntrega = itemEntrega.ItemEntrega()
 
 def menuVolume():
     print('---------- Menu De Volumes ----------')
@@ -21,22 +23,23 @@ def menuVolume():
     if opcao == 0:
         return
     elif opcao == 1:
+        id = str(input('Informe um Identificador para o item: '))
         item = str(input('Informe o nome do item à ser inserido: '))
-        volume.inserir(item)
+        itemEntrega.inserir(id, item)
 
     elif opcao == 2:
-        item = str(input('Informe o nome do item à ser removido: '))
+        id = str(input('Informe o ID do item à ser removido: '))
         try:
-            volume.remover(item)
+            itemEntrega.remover(id)
         except Exception as e:
             print(e)
 
     elif opcao == 3:
-        topo = volume.topo()
+        topo = itemEntrega.topo()
         print(topo)
 
     elif opcao == 4:
-        listaVolumes = volume.mostrarVolumes()
+        listaVolumes = itemEntrega.mostrarItens()
         print(listaVolumes)
     else:
         print(f'Opção {opcao} não é válida')
@@ -44,9 +47,6 @@ def menuVolume():
 
     menuVolume()
 
-
-sair = False
-volume = volume.Volume()
 
 while not sair:
     print('---------- Menu Principal ----------')
