@@ -10,7 +10,13 @@ def menuVolume():
     print('0 - Voltar ao menu anterior')
     print('--------------------')
 
-    opcao = int(input('Opção escolhida -> '))
+    opcao = input('Opção escolhida -> ')
+
+    try:
+        opcao = int(opcao)
+    except:
+        print('Utilize somente números')
+        menuVolume()
 
     if opcao == 0:
         return
@@ -48,7 +54,13 @@ while not sair:
     print('0 - Sair')
     print('--------------------')
 
-    opcao = int(input('Opção escolhida -> '))
+    opcao = input('Opção escolhida -> ')
+
+    try:
+        opcao = int(opcao)
+    except:
+        print('Utilize somente números')
+        continue
 
     if opcao == 0:
         sair = True

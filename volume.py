@@ -1,17 +1,16 @@
 class Volume:
     def __init__(self):
-        self.volumes = []
+        self.volumes = ['banana', 'laranja', 'maca']
 
     def inserir(self, item):
-        self.volumes.append(item)
+        self.volumes.insert(0, item)
 
     def remover(self, nomeDoItem):
-        for item in self.volumes:
-            if nomeDoItem == item:
-                self.volumes.remove(item)
-                print(f'Volume {item} removido com sucesso')
-                continue
-
+        
+        try:
+            self.volumes.remove(nomeDoItem)
+            print(f'Volume {nomeDoItem} removido com sucesso')
+        except:
             raise Exception('Item não localizado')
 
     def mostrarVolumes(self):
