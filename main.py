@@ -7,6 +7,68 @@ listaDeItens = []
 listaDeCaminhoes = []
 sair = False
 
+
+def associaItemAoLocal():
+    for i in listaDeItens:
+        x = i.get()
+        print(f'[ID: {x[0]}] - {x[1]}')
+
+    idItemEntrega = input('Selecione o ID do Item a ser associado: ')
+
+    for i in listaDeLocais:
+        x = i.get()
+        print(f'[ID: {x[0]}] - {x[1]}')
+
+    idLocal = input('Selecione o ID do Local para associar ao Item: ')
+
+    idxItem = None
+
+    for idx, l in enumerate(listaDeItens):
+        x = l.get()
+        if idItemEntrega == x[0]:
+            idxItem = idx
+            itemAssociar = l
+
+    for idx, l in enumerate(listaDeLocais):
+        x = l.get()
+        if idLocal == x[0]:
+            localAssociar = l
+
+    localAssociar.associar(itemAssociar)
+    listaDeItens.pop(idxItem)
+
+    print('Item associado com sucesso ao Local')
+
+
+def associaLocalAoCaminhao():
+    for i in listaDeLocais:
+        x = i.get()
+        print(f'[ID: {x[0]}] - {x[1]}')
+
+    idLocal = input(
+        'Selecione o ID do Local a ser associado ao Caminhão: ')
+
+    for i in listaDeCaminhoes:
+        x = i.get()
+        print(f'[ID: {x[0]}] - {x[1]}')
+
+    placaCaminhao = input('Selecione a Placa do Caminhão: ')
+
+    for idx, l in enumerate(listaDeLocais):
+        x = l.get()
+        if idLocal == x[0]:
+            localAssociar = l
+
+    for idx, c in enumerate(listaDeCaminhoes):
+        x = c.get()
+        if placaCaminhao == x[0]:
+            caminhaoAssociar = c
+
+    caminhaoAssociar.associarLocal(localAssociar)
+
+    print('Local associado ao Caminhão com sucesso')
+
+
 while not sair:
     print('---------- Menu Principal ----------')
     print('1 - Inserir Ponto de Entrega')
@@ -41,65 +103,9 @@ while not sair:
         caminhao = Caminhao(placa)
         listaDeCaminhoes.append(caminhao)
     elif opcao == '4':
-        # associar o item ao local
-        for i in listaDeItens:
-            x = i.get()
-            print(f'[ID: {x[0]}] - {x[1]}')
-
-        idItemEntrega = input('Selecione o ID do Item a ser associado: ')
-
-        for i in listaDeLocais:
-            x = i.get()
-            print(f'[ID: {x[0]}] - {x[1]}')
-
-        idLocal = input('Selecione o ID do Local para associar ao Item: ')
-
-        idxItem = None
-
-        for idx, l in enumerate(listaDeItens):
-            x = l.get()
-            if idItemEntrega == x[0]:
-                idxItem = idx
-                itemAssociar = l
-
-        for idx, l in enumerate(listaDeLocais):
-            x = l.get()
-            if idLocal == x[0]:
-                localAssociar = l
-
-        localAssociar.associar(itemAssociar)
-        listaDeItens.pop(idxItem)
-
-        print('Item associado com sucesso ao Local')
-
+        associaItemAoLocal()
     elif opcao == '5':
-        # associa Local ao Caminhão
-        for i in listaDeLocais:
-            x = i.get()
-            print(f'[ID: {x[0]}] - {x[1]}')
-
-        idLocal = input(
-            'Selecione o ID do Local a ser associado ao Caminhão: ')
-
-        for i in listaDeCaminhoes:
-            x = i.get()
-            print(f'[ID: {x[0]}] - {x[1]}')
-
-        placaCaminhao = input('Selecione a Placa do Caminhão: ')
-
-        for idx, l in enumerate(listaDeLocais):
-            x = l.get()
-            if idLocal == x[0]:
-                localAssociar = l
-
-        for idx, c in enumerate(listaDeCaminhoes):
-            x = c.get()
-            if placaCaminhao == x[0]:
-                caminhaoAssociar = c
-
-        caminhaoAssociar.associarLocal(localAssociar)
-
-        print('Local associado ao Caminhão com sucesso')
+        associaLocalAoCaminhao()
     elif opcao == '9':
         for i in listaDeItens:
             x = i.get()
