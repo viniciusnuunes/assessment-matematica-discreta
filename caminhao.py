@@ -1,11 +1,8 @@
-from local import Local
-
-
-class Caminhao(Local):
-    def __init__(self):
-        self.caminhoes = []        
-        self.placa = ''
-        self.Local = Local
+class Caminhao():
+    def __init__(self, placa):     
+        self.placa = placa
+        self.Locais = []
+        self.ItensEntrega = []
 
     def inserir(self, placa):
         self.caminhoes.append(placa)

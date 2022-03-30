@@ -104,6 +104,10 @@ from caminhao import Caminhao
 
 #     menuEntrega()
 
+
+listaDeLocais = []
+listaDeItens = []
+listaDeCaminhoes = []
 sair = False
 
 while not sair:
@@ -119,37 +123,60 @@ while not sair:
 
     opcao = input('Opção escolhida -> ')
 
-    try:
-        opcao = int(opcao)
-    except:
-        print('Utilize somente números')
-        continue
-
-    if opcao == 0:
+    if opcao == '0':
         sair = True
         print('Programa finalizado')
-        continue
-    elif opcao == 1:
-        local = Local()
-
+    elif opcao == '1':
         id = str(input('Informe um Identificador para o ponto de entrega: '))
         nome = str(input('Informe o nome do ponto de entrega à ser inserido: '))
-        local.inserir(id, nome)
-    elif opcao == 2:
-        itemEntrega = ItemEntrega()
 
+        local = Local(id, nome)
+        listaDeLocais.append(local)
+    elif opcao == '2':
         id = str(input('Informe um Identificador para o item: '))
         nome = str(input('Informe o nome do item à ser inserido: '))
-        itemEntrega.inserir(id, nome)
-    elif opcao == 3:
-        caminhao = Caminhao()
 
+        itemEntrega = ItemEntrega(id, nome)
+        listaDeItens.append(itemEntrega)
+    elif opcao == '3':
         placa = str(input('Informe a placa do Caminhão: '))
-        itemEntrega.inserir(placa)
-    elif opcao == 9:
+        
+        caminhao = Caminhao(placa)
+        listaDeCaminhoes.append(caminhao)
+    elif opcao == '4':
+        #associar o item ao local
+        for i in listaDeItens:
+            x = i.get()
+            print(f'[ID: {x[0]}] - {x[1]}')
+
+        idItemEntrega = input('Selecione o ID do Item a ser associado: ')
+
+        for i in listaDeLocais:
+            x = i.get()
+            print(f'[ID: {x[0]}] - {x[1]}')
+
+        idLocal = input('Selecione o ID do Local para associar ao Item: ')
+
+        idxItem = None
+        
+        for idx, l in enumerate(listaDeItens):
+            x = l.get()
+            if idItemEntrega == x[0]:
+                idxItem = idx
+                itemAssociar = l
+        
+        for idx, l  in enumerate(listaDeLocais):
+            x = l.get()
+            if idLocal == x[0]:                
+                localAssociar = l
+
+        localAssociar.associar(itemAssociar)
+        listaDeItens.pop(idxItem)
+
+        print('Item associado com sucesso ao Local')
+    elif opcao == '9':
         itemEntrega = ItemEntrega()
 
         print(itemEntrega.mostrarItens())
     else:
         print(f'Opção {opcao} não é válida')
-        continue

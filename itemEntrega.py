@@ -1,11 +1,13 @@
 class ItemEntrega:
-    def __init__(self):
-        self.itens = []
-        self.idVolume = ''
-        self.nomeVolume = ''
+    def __init__(self, id, nome):
+        self.id = id
+        self.nome = nome
 
-    def inserir(self, id, item):
-        self.itens.insert(0, (id, item))
+    def inserir(self):
+        return self.id, self.nome
+
+    def get(self):
+        return self.id, self.nome
 
     def remover(self, id):
         tamanho = self.tamanho()
