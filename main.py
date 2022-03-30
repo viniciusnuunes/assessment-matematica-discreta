@@ -2,9 +2,10 @@ from itemEntrega import ItemEntrega
 from local import Local
 from caminhao import Caminhao
 
-listaDeLocais = []
-listaDeItens = []
-listaDeCaminhoes = []
+listaDeLocais = [Local('777', 'Ministro Gabriel de Piza'),
+                 Local('109', 'Elvira da Fonseca')]
+listaDeItens = [ItemEntrega('1', 'celular'), ItemEntrega('2', 'relogio')]
+listaDeCaminhoes = [Caminhao('lll999')]
 sair = False
 
 
@@ -66,18 +67,22 @@ def associaLocalAoCaminhao():
 
 
 def realizarEntregas():
+    # buscando caminhões
     for caminhao in listaDeCaminhoes:
-        caminhao = caminhao.get()
+        c = caminhao.get()
 
-        for local in caminhao.Locais:
+        # buscando os locais associados ao caminhão
+        for local in c[1]:
             local = local.get()
 
-            for item in local.ItensEntrega:
-                item = item.get()
-
+            # verificando os Itens que estão associados ao Local
+            # que está associado à este caminhão e colocando-os
+            # na caçamba
+            for item in local[2]:
                 caminhao.associarItemEntrega(item)
 
-    print(listaDeCaminhoes)
+    for l in listaDeCaminhoes:
+        print(l.get())
 
 
 while not sair:
