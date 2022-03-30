@@ -4,8 +4,9 @@ from caminhao import Caminhao
 
 listaDeLocais = [Local('777', 'Ministro Gabriel de Piza'),
                  Local('109', 'Elvira da Fonseca')]
-listaDeItens = [ItemEntrega('1', 'celular'), ItemEntrega('2', 'relogio')]
-listaDeCaminhoes = [Caminhao('lll999')]
+listaDeItens = [ItemEntrega('1', 'celular'), ItemEntrega(
+    '2', 'relogio'), ItemEntrega('3', 'mouse'), ItemEntrega('4', 'bolsa adidas')]
+listaDeCaminhoes = [Caminhao('lll999'), Caminhao('mmm000')]
 sair = False
 
 
@@ -81,6 +82,10 @@ def realizarEntregas():
             for item in local[2]:
                 caminhao.associarItemEntrega(item)
 
+    # Caso haja pontos de entrega cadastrados sem caminhão associado
+
+    # Para cada ponto de entrega P, verifica que caminhão C
+    # possui menos pontos de entrega, e aloca P a C
     for l in listaDeCaminhoes:
         print(l.get())
 
