@@ -1,11 +1,20 @@
 class Caminhao():
-    def __init__(self, placa):     
+    def __init__(self, placa):
         self.placa = placa
         self.Locais = []
         self.ItensEntrega = []
 
     def inserir(self, placa):
         self.caminhoes.append(placa)
+
+    def get(self):
+        return self.placa, self.Locais, self.ItensEntrega
+
+    def associarLocal(self, Local):
+        self.Locais.insert(0, Local)
+
+    def associarItemEntrega(self, ItemEntrega):
+        self.ItensEntrega.insert(0, ItemEntrega)
 
     def remover(self, placa):
         tamanho = self.tamanho()

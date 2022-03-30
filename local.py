@@ -5,13 +5,14 @@ class Local():
         self.ItensEntrega = []
 
     def inserir(self, id, local):
-        self.locais.insert(0, (id, local))
+        # self.locais.insert(0, (id, local))
+        return self.id, self.local
 
     def get(self):
         return self.id, self.local, self.ItensEntrega
 
     def associar(self, ItemEntrega):
-        self.ItensEntrega.append(ItemEntrega)
+        self.ItensEntrega.insert(0, ItemEntrega)
 
     def remover(self, id):
         tamanho = self.tamanho()
