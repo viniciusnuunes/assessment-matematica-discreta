@@ -4,6 +4,9 @@ class Caminhao():
         self.Locais = []
         self.ItensEntrega = []
 
+    def __repr__(self):
+        return f'Placa: {self.placa}'
+
     def inserir(self, placa):
         self.caminhoes.append(placa)
 

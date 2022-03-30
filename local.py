@@ -4,6 +4,9 @@ class Local():
         self.local = local
         self.ItensEntrega = []
 
+    def __repr__(self):
+        return f'ID {self.id} - {self.local}'
+
     def inserir(self, id, local):
         # self.locais.insert(0, (id, local))
         return self.id, self.local

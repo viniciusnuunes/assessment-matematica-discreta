@@ -10,14 +10,12 @@ sair = False
 
 def associaItemAoLocal():
     for i in listaDeItens:
-        x = i.get()
-        print(f'[ID: {x[0]}] - {x[1]}')
+        print(i)
 
     idItemEntrega = input('Selecione o ID do Item a ser associado: ')
 
     for i in listaDeLocais:
-        x = i.get()
-        print(f'[ID: {x[0]}] - {x[1]}')
+        print(i)
 
     idLocal = input('Selecione o ID do Local para associar ao Item: ')
 
@@ -42,15 +40,13 @@ def associaItemAoLocal():
 
 def associaLocalAoCaminhao():
     for i in listaDeLocais:
-        x = i.get()
-        print(f'[ID: {x[0]}] - {x[1]}')
+        print(i)
 
     idLocal = input(
         'Selecione o ID do Local a ser associado ao Caminhão: ')
 
     for i in listaDeCaminhoes:
-        x = i.get()
-        print(f'[ID: {x[0]}] - {x[1]}')
+        print(i)
 
     placaCaminhao = input('Selecione a Placa do Caminhão: ')
 
@@ -67,6 +63,21 @@ def associaLocalAoCaminhao():
     caminhaoAssociar.associarLocal(localAssociar)
 
     print('Local associado ao Caminhão com sucesso')
+
+
+def realizarEntregas():
+    for caminhao in listaDeCaminhoes:
+        caminhao = caminhao.get()
+
+        for local in caminhao.Locais:
+            local = local.get()
+
+            for item in local.ItensEntrega:
+                item = item.get()
+
+                caminhao.associarItemEntrega(item)
+
+    print(listaDeCaminhoes)
 
 
 while not sair:
@@ -106,18 +117,17 @@ while not sair:
         associaItemAoLocal()
     elif opcao == '5':
         associaLocalAoCaminhao()
+    elif opcao == '6':
+        realizarEntregas()
     elif opcao == '9':
         for i in listaDeItens:
-            x = i.get()
-            print(x)
+            print(i)
 
         for i in listaDeLocais:
-            x = i.get()
-            print(x)
+            print(i)
 
         for i in listaDeCaminhoes:
-            x = i.get()
-            print(x)
+            print(i)
 
         print(listaDeItens)
         print(listaDeLocais)

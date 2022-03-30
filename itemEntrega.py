@@ -3,6 +3,9 @@ class ItemEntrega:
         self.id = id
         self.nome = nome
 
+    def __repr__(self):
+        return f'ID: {self.id} - {self.nome}'
+
     def inserir(self):
         return self.id, self.nome
 
