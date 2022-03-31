@@ -17,6 +17,9 @@ class Local():
     def associar(self, ItemEntrega):
         self.ItensEntrega.insert(0, ItemEntrega)
 
+    def possuiItensEntrega(self):
+        return self.ItensEntrega == []
+
     def remover(self, id):
         tamanho = self.tamanho()
 

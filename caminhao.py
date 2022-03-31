@@ -19,6 +19,15 @@ class Caminhao():
     def associarItemEntrega(self, ItemEntrega):
         self.ItensEntrega.insert(0, ItemEntrega)
 
+    def possuiLocais(self):
+        return self.Locais != []
+    
+    def possuiItens(self):
+        return self.ItensEntrega == []
+
+    def quantidadeItensEntrega(self):
+        return len(self.ItensEntrega)
+
     def remover(self, placa):
         tamanho = self.tamanho()
 

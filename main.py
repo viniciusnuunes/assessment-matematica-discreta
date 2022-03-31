@@ -68,27 +68,71 @@ def associaLocalAoCaminhao():
 
 
 def realizarEntregas():
+    idLocaisAssociados = []
+
     # buscando caminhões
-    for caminhao in listaDeCaminhoes:
-        c = caminhao.get()
+    for c in listaDeCaminhoes:
+        caminhao = c.get()
 
         # buscando os locais associados ao caminhão
-        for local in c[1]:
-            local = local.get()
+        for local in caminhao[1]:
+            l = local.get()
+
+            # verificando se o Ponto de entrega possui itens
+            if local.possuiItensEntrega():
+                idLocaisAssociados.insert(0, l[0])
 
             # verificando os Itens que estão associados ao Local
             # que está associado à este caminhão e colocando-os
             # na caçamba
-            for item in local[2]:
-                caminhao.associarItemEntrega(item)
+            for item in l[2]:
+                c.associarItemEntrega(item)
 
     # Caso haja pontos de entrega cadastrados sem caminhão associado
 
     # Para cada ponto de entrega P, verifica que caminhão C
     # possui menos pontos de entrega, e aloca P a C
-    for l in listaDeCaminhoes:
-        print(l.get())
+    tamanhoLocais = len(listaDeLocais)
 
+    print(idLocaisAssociados)
+    print(tamanhoLocais)
+
+    # há locais (que possuem itens associados) sem caminhoes associados?
+    # if len(idLocaisAssociados != len(tamanhoLocais)):
+        # verificar qual caminhão tem menos ponto de entrega
+        # aux =  0
+        # caminhaoMaisVazio = None
+
+        # for idx, caminhao in enumerate(listaDeCaminhoes):
+        #     aux = caminhao.quantidadeItensEntrega()
+
+    totalPontosVisitados = 0
+    totalItensEntregues = 0
+
+    for caminhao in listaDeCaminhoes:
+        if caminhao.possuiLocais():            
+            c = caminhao.get()
+            print(f'Percurso do caminhão {c[0].upper()}')
+
+            for local in c[1]:
+                l = local.get()
+                totalPontosVisitados += 1
+                print(f'    Visitado o Ponto de Entrega {l[1].upper()}. Foram entregue os itens:')
+                
+                for item in l[2]:
+                    i = item.get()
+                    totalItensEntregues += 1
+                    print(f'        {i[1]} - {l[1]}'.upper())
+            
+            print(f'Percurso do caminhão {c[0].upper()} finalizado')
+            print('-----------------------------------------')
+        else:
+            print(f'Caminhão {caminhao.placa.upper()} não está associado a nenhum Local')
+
+    print('-----------------------------------------')        
+    print(f'Total de pontos de entrega: {str(totalPontosVisitados)}')
+    print(f'Total de Itens entregues: {str(totalItensEntregues)}')
+    print('ROTINA FINALIZADA')
 
 while not sair:
     print('---------- Menu Principal ----------')
