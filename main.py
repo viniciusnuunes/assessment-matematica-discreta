@@ -75,7 +75,7 @@ def realizarEntregas():
         c = caminhao.get()
 
         # Local que já está associado a um caminhão
-        for local in c[1]:
+        for local in reversed(c[1]):
             l = local.get()
 
             # verificando se o Local possui itens
@@ -122,7 +122,19 @@ def realizarEntregas():
     print(f'Total de pontos de entrega: {str(totalPontosVisitados)}')
     print(f'Total de Itens entregues: {str(totalItensEntregues)}')
     print('ROTINA FINALIZADA')
- 
+
+
+def itemEntregaTopo():
+    return listaDeItens[len(listaDeItens) - 1]
+
+
+def exibirDadosDoLocal(Local):
+    local = Local.get()
+    print(f'ID {local[0]} - {local[1]}')
+    for item in local[2]:
+        i = item.get()
+        print(f'Item {i[0]} - {i[1]}')
+          
 
 while not sair:
     print('---------- Menu Principal ----------')
@@ -163,6 +175,8 @@ while not sair:
         associaLocalAoCaminhao()
     elif opcao == '6':
         realizarEntregas()
+    elif opcao == '8':
+        exibirDadosDoLocal(listaDeLocais[0])
     elif opcao == '9':
         for i in listaDeItens:
             print(i)
