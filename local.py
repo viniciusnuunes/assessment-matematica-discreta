@@ -14,4 +14,4 @@ class Local():
         self.ItensEntrega.insert(0, ItemEntrega)
 
     def possuiItensEntrega(self):
-        return self.ItensEntrega == []
+        return self.ItensEntrega != []

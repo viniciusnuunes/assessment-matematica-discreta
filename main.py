@@ -2,6 +2,11 @@ from itemEntrega import ItemEntrega
 from local import Local
 from caminhao import Caminhao
 
+# from pythonds.basic import Queue
+# from pythonds.basic import Stack
+
+# pilha - fila - lista
+
 listaDeLocais = [Local('777', 'Ministro Gabriel de Piza'),
                  Local('109', 'Elvira da Fonseca')]
 listaDeItens = [ItemEntrega('1', 'celular'), ItemEntrega(
