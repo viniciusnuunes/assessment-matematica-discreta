@@ -119,7 +119,7 @@ def realizarEntregas():
                 totalPontosVisitados += 1
                 print(f'    Visitado o Ponto de Entrega {l[1].upper()}. Foram entregue os itens:')
                 
-                for item in l[2]:
+                for item in reversed(l[2]):
                     i = item.get()
                     totalItensEntregues += 1
                     print(f'        {i[1]} - {l[1]}'.upper())
