@@ -7,9 +7,6 @@ class Caminhao():
     def __repr__(self):
         return f'Placa: {self.placa}'
 
-    def inserir(self, placa):
-        self.caminhoes.append(placa)
-
     def get(self):
         return self.placa, self.Locais, self.ItensEntrega
 
@@ -21,32 +18,9 @@ class Caminhao():
 
     def possuiLocais(self):
         return self.Locais != []
-    
+
     def possuiItens(self):
-        return self.ItensEntrega == []
+        return self.ItensEntrega != []
 
     def quantidadeItensEntrega(self):
         return len(self.ItensEntrega)
-
-    def remover(self, placa):
-        tamanho = self.tamanho()
-
-        for idx, local in enumerate(self.caminhoes):
-            if placa == local[0]:
-                self.caminhoes.pop(idx)
-                print(f'Volume {placa} removido com sucesso')
-
-        if tamanho == self.tamanho():
-            print('Local não localizado')
-
-    def mostrarCaminhoes(self):
-        return self.caminhoes
-
-    def topo(self):
-        return self.caminhoes[len(self.caminhoes) - 1]
-
-    def tamanho(self):
-        return len(self.caminhoes)
-
-    def vazio(self):
-        return self.caminhoes == []
