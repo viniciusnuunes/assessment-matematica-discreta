@@ -52,12 +52,12 @@ def associaLocalAoCaminhao():
 
     placaCaminhao = input('Selecione a Placa do Caminhão: ')
 
-    for idx, l in enumerate(listaDeLocais):
+    for l in listaDeLocais:
         x = l.get()
         if idLocal == x[0]:
             localAssociar = l
 
-    for idx, c in enumerate(listaDeCaminhoes):
+    for c in listaDeCaminhoes:
         x = c.get()
         if placaCaminhao == x[0]:
             caminhaoAssociar = c
@@ -71,14 +71,17 @@ def realizarEntregas():
     idLocaisAssociados = []
 
     # buscando caminhões
-    for c in listaDeCaminhoes:
-        caminhao = c.get()
+    for caminhao in listaDeCaminhoes:
+        c = caminhao.get()
 
-        # buscando os locais associados ao caminhão
-        for local in caminhao[1]:
+        # Local que já está associado a um caminhão
+        for local in c[1]:
             l = local.get()
 
-            # verificando se o Ponto de entrega possui itens
+            # verificando se o Local possui itens
+            # este if é responsável por salvar o ID do Local que
+            # está associado ao caminhão e possui Itens para
+            # uma verificação posterior (Local Cadastrado sem Caminhão associado)
             if local.possuiItensEntrega():
                 idLocaisAssociados.insert(0, l[0])
 
@@ -86,53 +89,40 @@ def realizarEntregas():
             # que está associado à este caminhão e colocando-os
             # na caçamba
             for item in l[2]:
-                c.associarItemEntrega(item)
+                caminhao.associarItemEntrega(item)
 
-    # Caso haja pontos de entrega cadastrados sem caminhão associado
-
-    # Para cada ponto de entrega P, verifica que caminhão C
-    # possui menos pontos de entrega, e aloca P a C
-    tamanhoLocais = len(listaDeLocais)
-
-    print(idLocaisAssociados)
-    print(tamanhoLocais)
-
-    # há locais (que possuem itens associados) sem caminhoes associados?
-    # if len(idLocaisAssociados != len(tamanhoLocais)):
-        # verificar qual caminhão tem menos ponto de entrega
-        # aux =  0
-        # caminhaoMaisVazio = None
-
-        # for idx, caminhao in enumerate(listaDeCaminhoes):
-        #     aux = caminhao.quantidadeItensEntrega()
+    # ----- PARTE DE LOCAL CADASTRATO SEM CAMINHÃO ASSOCIADO (NÃO CONCLUÍDO) ----- #
 
     totalPontosVisitados = 0
     totalItensEntregues = 0
 
     for caminhao in listaDeCaminhoes:
-        if caminhao.possuiLocais():            
+        if caminhao.possuiLocais():
             c = caminhao.get()
             print(f'Percurso do caminhão {c[0].upper()}')
 
             for local in c[1]:
                 l = local.get()
                 totalPontosVisitados += 1
-                print(f'    Visitado o Ponto de Entrega {l[1].upper()}. Foram entregue os itens:')
-                
+                print(
+                    f'    Visitado o Ponto de Entrega {l[1].upper()}. Foram entregue os itens:')
+
                 for item in reversed(l[2]):
                     i = item.get()
                     totalItensEntregues += 1
                     print(f'        {i[1]} - {l[1]}'.upper())
-            
+
             print(f'Percurso do caminhão {c[0].upper()} finalizado')
             print('-----------------------------------------')
         else:
-            print(f'Caminhão {caminhao.placa.upper()} não está associado a nenhum Local')
+            print(
+                f'Caminhão {caminhao.placa.upper()} não está associado a nenhum Local')
 
-    print('-----------------------------------------')        
+    print('-----------------------------------------')
     print(f'Total de pontos de entrega: {str(totalPontosVisitados)}')
     print(f'Total de Itens entregues: {str(totalItensEntregues)}')
     print('ROTINA FINALIZADA')
+ 
 
 while not sair:
     print('---------- Menu Principal ----------')
