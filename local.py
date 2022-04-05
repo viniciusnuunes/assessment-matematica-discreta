@@ -1,22 +1,12 @@
 # Fila
 class Local:
-    def __init__(self, id, nome, ItemEntrega):
-        self.locais = []
+    def __init__(self, id, nome, ItensEntrega):
         self.id = id
         self.nome = nome
-        self.ItensEntrega = [ItemEntrega]
+        self.ItensEntrega = [ItensEntrega]
 
-    def vazio(self):
-        return self.locais == []
+    # def __repr__(self):
+    #     return f'{self.id} - {self.nome} - Itens: {self.ItensEntrega}'
 
-    def enfileirar(self, local):
-        self.locais.insert(0, local)
-
-    def desenfileirar(self):
-        return self.locais.pop()
-
-    def associar(self, ItemEntrega):
-        return self.ItensEntrega.insert(0, ItemEntrega)
-
-    def tamanho(self):
-        return len(self.locais)
+    def listar(self):
+        return self.id, self.nome, self.ItensEntrega

@@ -1,19 +1,29 @@
 # Pilha
-class ItemEntrega:
+class ItensEntrega:
     def __init__(self):
-        self.itensEntrega = []
+        self.itens = []
+
+    # def __repr__(self):
+    #     final = ''
+    #     for i in self.itens:
+    #         final += f'{str(i)} '
+        
+    #     return final
 
     def vazio(self):
-        return self.itensEntrega == []
+        return self.itens == []
 
     def empilhar(self, item):
-        self.itensEntrega.append(item)
+        self.itens.append(item)
 
     def desempilhar(self):
-        return self.itensEntrega.pop()
+        return self.itens.pop()
 
     def topo(self):
-        return self.itensEntrega[len(self.itensEntrega)-1]
+        return self.itens[len(self.itens)-1]
 
     def tamanho(self):
-        return len(self.itensEntrega)
+        return len(self.itens)
+
+    def listar(self):
+        return self.itens
