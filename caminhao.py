@@ -1,26 +1,22 @@
+# Lista
 class Caminhao():
-    def __init__(self, placa):
+    def __init__(self, placa, Local, ItemEntrega):
+        self.caminhoes = []
         self.placa = placa
-        self.Locais = []
-        self.ItensEntrega = []
+        self.Locais = [Local]
+        self.ItensEntrega = [ItemEntrega]
 
-    def __repr__(self):
-        return f'Placa: {self.placa}'
+    def vazio(self):
+        return self.caminhoes == []
 
-    def get(self):
-        return self.placa, self.Locais, self.ItensEntrega
+    def inserir(self, caminhao):
+        return self.caminhoes.append(caminhao)
+    
+    def remover(self):
+        return self.caminhoes.pop()
 
     def associarLocal(self, Local):
         self.Locais.insert(0, Local)
 
     def associarItemEntrega(self, ItemEntrega):
         self.ItensEntrega.insert(0, ItemEntrega)
-
-    def possuiLocais(self):
-        return self.Locais != []
-
-    def possuiItens(self):
-        return self.ItensEntrega != []
-
-    def quantidadeItensEntrega(self):
-        return len(self.ItensEntrega)

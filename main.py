@@ -7,12 +7,23 @@ from caminhao import Caminhao
 
 # pilha - fila - lista
 
-listaDeLocais = [Local('777', 'Ministro Gabriel de Piza'),
-                 Local('109', 'Elvira da Fonseca')]
-listaDeItens = [ItemEntrega('1', 'celular'), ItemEntrega(
-    '2', 'relogio'), ItemEntrega('3', 'mouse'), ItemEntrega('4', 'bolsa adidas')]
-listaDeCaminhoes = [Caminhao('lll999'), Caminhao('mmm000')]
-sair = False
+item = ItemEntrega()
+local = Local()
+caminhao = Caminhao()
+
+item.empilhar(('1', 'celular'))
+item.empilhar(('2', 'relogio'))
+item.empilhar(('3', 'mouse'))
+item.empilhar(('4', 'bolsa adidas'))
+
+local.enfileirar(('777', 'Ministro Gabriel de Piza', item))
+
+caminhao.inserir('LLL999')
+caminhao.inserir('MMM000')
+
+caminhao.associarLocal(local)
+
+
 
 
 def associaItemAoLocal():
@@ -139,7 +150,8 @@ def exibirDadosDoLocal(Local):
     for item in local[2]:
         i = item.get()
         print(f'Item {i[0]} - {i[1]}')
-          
+
+sair = False          
 
 while not sair:
     print('---------- Menu Principal ----------')
