@@ -1,8 +1,9 @@
 from item import Item
 from itemEntrega import ItensEntrega
-from locais import Locais
 from local import Local
+from locais import Locais
 from caminhao import Caminhao
+from caminhoes import Caminhoes
 
 # from pythonds.basic import Queue
 # from pythonds.basic import Stack
@@ -17,7 +18,7 @@ item4 = Item('4', 'garrafa')
 item5 = Item('5', 'caixa de som')
 item6 = Item('6', 'notebook')
 
-# Criando e empilhando a estrutura da Itens
+# Criando e empilhando a estrutura de Itens
 itensEntrega1 = ItensEntrega()
 itensEntrega1.empilhar(item1)
 itensEntrega1.empilhar(item2)
@@ -43,16 +44,24 @@ locais1.enfileirar(local2)
 locais2 = Locais()
 locais2.enfileirar(local3)
 
+# Criando e fazendo a lista de caminhoes
+caminhao1 = Caminhao('kxj9683', locais1)
+caminhao2 = Caminhao('lts3192', locais2)
+
+caminhoes = Caminhoes()
+caminhoes.inserir(caminhao1)
+caminhoes.inserir(caminhao2)
+
+# Empilhando Itens para serem entregues
+caminhoes.empilharItens()
+
+# imprimindo a rotina dos caminhoes
+caminhoes.imprimirRotina()
 
 
-caminhao1 = Caminhao('lll999', locais1)
-caminhao2 = Caminhao('mmm000', locais2)
-
-caminhao1.empilharItens()
-caminhao2.empilharItens()
-
-
-
+# Exibir os itens da entrega e os locais de entrega da lista de caminhões
+# caminhoes.listarItensEntrega()
+# caminhoes.listarLocais()
 
 # l = locais.listar()
 

@@ -4,5 +4,8 @@ class Caminhao():
         self.locais = [Locais]
         self.itensEntrega = []
 
+    def empilharItens(self, item):        
+        self.itensEntrega.append(item)
+
     def listar(self):
-        return self.placa, self.locais
+        return self.placa, self.locais, self.itensEntrega
