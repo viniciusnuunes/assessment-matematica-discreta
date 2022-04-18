@@ -72,6 +72,6 @@ class Caminhoes():
                     print(f'    Visitando o ponto de entrega {local[1]}. Foram entregues os itens:')
                     for itensEntrega in local[2]:
                         item = itensEntrega.listar()
-                        for i in item:
+                        for i in reversed(item):
                             i = i.listar()
                             print(f'        {i[1].upper()} - {local[1].upper()}')
